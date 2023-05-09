@@ -1,0 +1,8 @@
+python==3.8
+timm==0.3.2
+mmcv-full==1.2.7
+torch==1.7.1
+torchvision==0.8.2
+opencv-python==4.5.1.48
+scikit-image==0.18.1
+pywt
