@@ -48,7 +48,7 @@ class EncoderTransformer(nn.Module):
         self.mini_patch_embed4 = OverlapPatchEmbed(img_size=img_size // 32, patch_size=3, stride=2, in_chans=embed_dims[0],
                                               embed_dim=embed_dims[3])
 
-        # Main encoder (M)
+        ### Main encoder (M) ###
         dpr = [x.item() for x in torch.linspace(0, drop_path_rate, sum(depths))]  # stochastic depth decay rule
         cur = 0
         self.block1 = nn.ModuleList([Block(
@@ -58,7 +58,7 @@ class EncoderTransformer(nn.Module):
             for i in range(depths[0])])
         self.norm1 = norm_layer(embed_dims[0])
 
-        # mini-patch encoder (m)
+        # mini-patch encoder (m) #
         self.patch_block1 = nn.ModuleList([Block(
             dim=embed_dims[1], num_heads=num_heads[0], mlp_ratio=mlp_ratios[0], qkv_bias=qkv_bias, qk_scale=qk_scale,
             drop=drop_rate, attn_drop=attn_drop_rate, drop_path=dpr[cur + i], norm_layer=norm_layer,
@@ -66,7 +66,7 @@ class EncoderTransformer(nn.Module):
             for i in range(1)])
         self.pnorm1 = norm_layer(embed_dims[1])
 
-        # Main  encoder (M)
+        ### Main encoder (M) ###
         cur += depths[0]
         self.block2 = nn.ModuleList([Block(
             dim=embed_dims[1], num_heads=num_heads[1], mlp_ratio=mlp_ratios[1], qkv_bias=qkv_bias, qk_scale=qk_scale,
@@ -75,7 +75,7 @@ class EncoderTransformer(nn.Module):
             for i in range(depths[1])])
         self.norm2 = norm_layer(embed_dims[1])
 
-        # mini-patch encoder (m)
+        # mini-patch encoder (m) #
         self.patch_block2 = nn.ModuleList([Block(
             dim=embed_dims[2], num_heads=num_heads[1], mlp_ratio=mlp_ratios[1], qkv_bias=qkv_bias, qk_scale=qk_scale,
             drop=drop_rate, attn_drop=attn_drop_rate, drop_path=dpr[cur + i], norm_layer=norm_layer,
@@ -83,7 +83,7 @@ class EncoderTransformer(nn.Module):
             for i in range(1)])
         self.pnorm2 = norm_layer(embed_dims[2])
 
-        # Main  encoder (M)
+        ### Main encoder (M) ###
         cur += depths[1]
         self.block3 = nn.ModuleList([Block(
             dim=embed_dims[2], num_heads=num_heads[2], mlp_ratio=mlp_ratios[2], qkv_bias=qkv_bias, qk_scale=qk_scale,
@@ -92,7 +92,7 @@ class EncoderTransformer(nn.Module):
             for i in range(depths[2])])
         self.norm3 = norm_layer(embed_dims[2])
 
-        # mini-patch encoder (m)
+        # mini-patch encoder (m) #
         self.patch_block3 = nn.ModuleList([Block(
             dim=embed_dims[3], num_heads=num_heads[1], mlp_ratio=mlp_ratios[2], qkv_bias=qkv_bias, qk_scale=qk_scale,
             drop=drop_rate, attn_drop=attn_drop_rate, drop_path=dpr[cur + i], norm_layer=norm_layer,
@@ -100,7 +100,7 @@ class EncoderTransformer(nn.Module):
             for i in range(1)])
         self.pnorm3 = norm_layer(embed_dims[3])
 
-        # Main  encoder (m)
+        ### Main encoder (M) ###
         cur += depths[2]
         self.block4 = nn.ModuleList([Block(
             dim=embed_dims[3], num_heads=num_heads[3], mlp_ratio=mlp_ratios[3], qkv_bias=qkv_bias, qk_scale=qk_scale,
@@ -227,7 +227,7 @@ class EncoderTransformer(nn.Module):
         return x
 
     """ 
-    Image to Patch Embedding
+    Image Patch Embedding
     """
 class OverlapPatchEmbed(nn.Module):
 
@@ -332,7 +332,7 @@ class Mlp(nn.Module):
         return x
 
 
-### OBI-Wavelet Attention ###
+###### WiT-Wavelet Attention ######
 
 class Attention(nn.Module):
     def __init__(self, dim, num_heads, sr_ratio, qkv_bias=False, qk_scale=None, attn_drop=0., proj_drop=0.):
@@ -379,7 +379,9 @@ class Attention(nn.Module):
             m.weight.data.normal_(0, math.sqrt(2.0 / fan_out))
             if m.bias is not None:
                 m.bias.data.zero_()
-###### DWT implement ##############
+                
+###### DWT call ##############
+    
     def forward(self, x, H, W):
         B, N, C = x.shape
         q = self.q(x).reshape(B, N, self.num_heads, C // self.num_heads).permute(0, 2, 1, 3)
@@ -387,7 +389,9 @@ class Attention(nn.Module):
         x = x.view(B, H, W, C).permute(0, 3, 1, 2) #(BHWC)
         x_dwt = self.dwt(self.reduce(x))
         x_dwt = self.filter(x_dwt)
-###### iDWT implement ##############
+        
+###### iDWT call ##############
+        
         x_idwt = self.idwt(x_dwt)
         x_idwt = x_idwt.view(B, -1, x_idwt.size(-2)*x_idwt.size(-1)).transpose(1, 2)
 
@@ -398,7 +402,9 @@ class Attention(nn.Module):
         attn = (q @ k.transpose(-2, -1)) * self.scale
         attn = attn.softmax(dim=-1)
         x = (attn @ v).transpose(1, 2).reshape(B, N, C)
-###### OB-ADD (Conditional statement if tensor mismatch happens) ########
+        
+###### Conditional statement if tensor mismatch happens ########
+        
         if x.shape != x_idwt.shape:
             B,N,C = x_idwt.shape
             diff = abs(x.shape[1]-x_idwt.shape[1])
@@ -409,7 +415,8 @@ class Attention(nn.Module):
         #x = self.proj(x)
 
         return x
-### DWT-MHSA ENDS-HERE @OBI ###
+        
+###### DWT-MHSA ENDS-HERE @ WiT-Attention ######
 
 class Attention_dec(nn.Module):
     def __init__(self, dim, num_heads=8, qkv_bias=False, qk_scale=None, attn_drop=0., proj_drop=0., sr_ratio=1):
@@ -455,7 +462,7 @@ class Attention_dec(nn.Module):
         B, N, C = x.shape
         task_q = self.task_query
 
-        # This is because we fix the task parameters to be of a certain dimension, so with varying batch size, we just stack up the same queries to operate on the entire batch
+        ### fix the task parameters dimension
         if B>1:
 
             task_q = task_q.unsqueeze(0).repeat(B,1,1,1)
@@ -740,7 +747,7 @@ class convprojection(nn.Module):
 
 
 
-## The following is the network which can be fine-tuned for specific datasets
+### The network fine-tuning for snow datasets ###
 
 class WiT(nn.Module):
 
