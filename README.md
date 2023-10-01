@@ -23,4 +23,4 @@ git clone https://github.com/WINS-lab/WiT
 cd WiT
 ```
 
-- Install package dependencies using 'pip3 install -r requirements.txt'
+- Install package dependencies using `pip3 install -r requirements.txt'
