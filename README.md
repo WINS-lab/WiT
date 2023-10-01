@@ -5,7 +5,7 @@
 This is the implementation code for the paper *titled:* [Restoring Snow-Degraded Single Images With Wavelet in Vision Transformer](https://ieeexplore.ieee.org/document/10246273), IEEE Access 2023.
 
 <p align="left">
-  <img src="imgs/architecture.pdf" width="800"/>
+  <img src="imgs/architecture.png" width="800"/>
 </p>
 
 # Executive Summary:
