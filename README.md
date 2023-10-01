@@ -24,3 +24,9 @@ cd WiT
 ```
 
 - Install package dependencies using `pip3 install -r requirements.txt`
+
+- PyTorch environment with CUDA 10.2 support for Windows|Linux can be installed with Conda `conda install pytorch==1.7.1 torchvision==0.8.2 torchaudio==0.7.2 cudatoolkit=10.2 -c pytorch`
+
+# Datasets:
+
+The WiT network is trained with the SNOW100K-L, SRRS, and CSD snow-image datasets, respectively.
