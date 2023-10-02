@@ -2,7 +2,8 @@
 
 <a href="https://ieeexplore.ieee.org/document/10246273"> </a>
 
-This is the implementation code for the paper *titled:* [Restoring Snow-Degraded Single Images With Wavelet in Vision Transformer](https://ieeexplore.ieee.org/document/10246273), IEEE Access 2023.
+This is the implementation code for the paper *titled:* [Restoring Snow-Degraded Single Images With Wavelet in Vision Transformer](https://ieeexplore.ieee.org/document/10246273) 
+IEEE Access 2023.
 
 <p align="left">
   <img src="imgs/architecture.png" width="800"/>
@@ -33,7 +34,7 @@ cd WiT
 
 ## Data format
 
-Create a `data` folder and format 2000 samples of the test dataset snow-degraded input and groundtruth images as follows
+Create a `data` folder and format 2000 samples of the test dataset input and groundtruth images as follows
 
 ```
     WiT
