@@ -29,7 +29,7 @@ cd WiT
 
 ## Data format
 
-- Create a `data` folder and format the test-set input and gt data as follows
+- Create a `data` folder and format the test dataset snow-degraded input and gt images as follows
 
 ```
     WiT
