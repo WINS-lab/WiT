@@ -27,6 +27,8 @@ cd WiT
 
 - PyTorch environment with GPU support for Windows and Linux can be installed with Conda `conda install pytorch==1.7.1 torchvision==0.8.2 torchaudio==0.7.2 cudatoolkit=10.2 -c pytorch`
 
+- Find the model weights and data text file samples [here](https://github.com/WINS-lab/WiT/tree/main/files)
+
 - Run `test.py` command. For example `python3 test.py -exp_name csd_weight`
 
 ## Data format
@@ -44,7 +46,6 @@ Create a `data` folder and format 2000 samples of the test dataset snow-degraded
     |   |   |   └── gt            # clean images
     |   |   └── dataset_filename.txt
 ```
-Find text file samples [here](https://github.com/WINS-lab/WiT/tree/main/files)
 
 # Datasets:
 
@@ -53,7 +54,7 @@ The underlisted snow-image datasets were used for the evaluation of the WiT netw
 - SRRS [download link](https://ntucc365-my.sharepoint.com/personal/f05943089_ntu_edu_tw/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Ff05943089%5Fntu%5Fedu%5Ftw%2FDocuments%2FSRRS%2Ezip&parent=%2Fpersonal%2Ff05943089%5Fntu%5Fedu%5Ftw%2FDocuments&ga=1)
 - CSD [download link](https://drive.google.com/file/d/1smNrDvtPs89e0xk336Rt2-2KZffyX5H-/view)
 
-# Results
+# Results:
 
 The PSNR and SSIM (numeric) results comparison
 <p align="left">
@@ -67,6 +68,7 @@ The quantitative (visual) result comparison evaluated on CSD dataset
 
 # Citation
 
+Bibtex:
 ```
 @article{WiTNet2023,
   author={Obinna Agbodike and Jenhui Chen},
