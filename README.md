@@ -57,12 +57,12 @@ The underlisted snow-image datasets were used for the evaluation of the WiT netw
 
 The PSNR and SSIM (numeric) results comparison
 <p align="left">
-  <img src="imgs/metric_results.png" width="800"/>
+  <img src="imgs/metric_results.PNG" width="800"/>
 </p>
 
 The quantitative (visual) result comparison evaluated on CSD dataset
 <p align="left">
-  <img src="imgs/visual_results.png" width="800"/>
+  <img src="imgs/visual_results.PNG" width="800"/>
 </p>
 
 # Citation
