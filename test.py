@@ -20,7 +20,7 @@ args = parser.parse_args()
 val_batch_size = args.val_batch_size
 exp_name = args.exp_name
 
-#set seed
+# --- set seed --- #
 seed = args.seed
 if seed is not None:
     np.random.seed(seed)
@@ -38,9 +38,10 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print(device)
 
 # --- Validation data loader --- #
-
-#val_filename = 'snowtest100k_L.txt' ## This text file should contain all the names of the images and must be placed in ./data/test/ directory
-#val_filename = 'desnow.txt'
+'''
+This text file should contain all the names of the images and must be placed in ./data/test/ directory
+'''
+#val_filename = 'snow100k.txt' 
 val_filename = 'csdtest.txt'
 #val_filename = 'srrstest.txt'
 
@@ -58,7 +59,7 @@ net.load_state_dict(torch.load('./{}/best'.format(exp_name)))
 
 # --- Use the evaluation model in testing --- #
 net.eval()
-#category = "snowtest100k"
+
 #category = "SNOW100"
 category = "csdtest"
 #category = "srrstest"
@@ -67,7 +68,7 @@ if os.path.exists('./results/{}/{}/'.format(category,exp_name))==False:
 	os.makedirs('./results/{}/{}/'.format(category,exp_name))	
 
 
-print('--- Testing starts! ---')
+print('--- Start Test Inference! ---')
 start_time = time.time()
 val_psnr, val_ssim = validation_val(net, val_data_loader, device, exp_name,category, save_tag=True)
 end_time = time.time() - start_time
