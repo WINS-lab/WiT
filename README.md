@@ -45,4 +45,10 @@ cd WiT
 
 # Datasets:
 
-The WiT network is trained with the SNOW100K-L, SRRS, and CSD snow-image datasets, respectively.
+The underlisted snow-image datasets were used for the evaluation of the WiT network
+- SNOW100K-L [download link](https://sites.google.com/view/yunfuliu/desnownet)
+- SRRS [download link](https://ntucc365-my.sharepoint.com/personal/f05943089_ntu_edu_tw/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Ff05943089%5Fntu%5Fedu%5Ftw%2FDocuments%2FSRRS%2Ezip&parent=%2Fpersonal%2Ff05943089%5Fntu%5Fedu%5Ftw%2FDocuments&ga=1)
+- CSD [download link](https://drive.google.com/file/d/1smNrDvtPs89e0xk336Rt2-2KZffyX5H-/view)
+
+# Acknowledgement
+Useful blocks of code adapted in the WiT is credited to the contributions of [ImageNetModel](https://github.com/yehli/imagenetmodel), [TransWeather](https://github.com/jeya-maria-jose/TransWeather/), and [ViT-PyTorch](https://github.com/lucidrains/vit-pytorch) 
