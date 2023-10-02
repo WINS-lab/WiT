@@ -28,7 +28,7 @@ cd WiT
 
 - PyTorch environment with GPU support for Windows and Linux can be installed with Conda `conda install pytorch==1.7.1 torchvision==0.8.2 torchaudio==0.7.2 cudatoolkit=10.2 -c pytorch`
 
-- Download test datasets from the links given below and place in `data folder`. Optionally, you can `mogrify` data image extensions. For example `mogrify -format tif *.jpg && rm *.jpg` to change .jpg images to .tif & delete .jpg
+- Download test datasets to a `data folder` with the links given below. 
 
 - Download the model_weights.zip [here](http://depositfiles.com/files/4ujd7vdcc) and data text file samples [here](https://github.com/WINS-lab/WiT/tree/main/files). 
 
