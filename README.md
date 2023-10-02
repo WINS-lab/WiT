@@ -14,18 +14,34 @@ Images corrupted by snowy adverse weather can impose performance impediments to 
 
 # How to Run the Code:
 
-- Recommended Python versions is 3.7.7 to 3.8, and CUDA versions 10.2 to 11.0
+- Recommended Python versions is from 3.7 to 3.8, and CUDA versions 10.2 to 11.5
 
-- Download or Clone this repo
+- Download or Clone this repository
 
 ```
 git clone https://github.com/WINS-lab/WiT
 cd WiT
 ```
 
-- Install package dependencies using `pip3 install -r requirements.txt`
+- Install package dependencies `pip3 install -r requirements.txt`
 
-- PyTorch environment with CUDA 10.2 support for Windows|Linux can be installed with Conda `conda install pytorch==1.7.1 torchvision==0.8.2 torchaudio==0.7.2 cudatoolkit=10.2 -c pytorch`
+- PyTorch environment with GPU support for Windows and Linux can be installed with Conda `conda install pytorch==1.7.1 torchvision==0.8.2 torchaudio==0.7.2 cudatoolkit=10.2 -c pytorch`
+
+## Data format
+
+- Create a `data` folder and format the test-set input and gt data as follows
+
+```
+    WiT
+    |
+    ├── data
+    |   | 
+    |   ├── test  # Test-set         
+    |   |   ├── <dataset_name>          
+    |   |   |   ├── input         # degraded images 
+    |   |   |   └── gt            # clean images
+    |   |   └── dataset_filename.txt
+```
 
 # Datasets:
 
