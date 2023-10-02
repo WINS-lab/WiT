@@ -14,7 +14,7 @@ Images corrupted by snowy adverse weather can impose performance impediments to 
 
 # How to Run the Code:
 
-- Recommended Python versions is from 3.7 to 3.8, and CUDA versions 10.2 to 11.5
+Recommended Python versions is from 3.7 to 3.8, and CUDA versions 10.2 to 11.5
 
 - Download or Clone this repository
 
@@ -27,9 +27,11 @@ cd WiT
 
 - PyTorch environment with GPU support for Windows and Linux can be installed with Conda `conda install pytorch==1.7.1 torchvision==0.8.2 torchaudio==0.7.2 cudatoolkit=10.2 -c pytorch`
 
+- Run `test.py` command. For example `python3 test.py -exp_name csd_weight`
+
 ## Data format
 
-- Create a `data` folder and format the test dataset snow-degraded input and gt images as follows
+Create a `data` folder and format 2000 samples of the test dataset snow-degraded input and groundtruth images as follows
 
 ```
     WiT
@@ -42,6 +44,7 @@ cd WiT
     |   |   |   └── gt            # clean images
     |   |   └── dataset_filename.txt
 ```
+Find text file samples [here](https://github.com/WINS-lab/WiT/tree/main/files)
 
 # Datasets:
 
@@ -50,5 +53,30 @@ The underlisted snow-image datasets were used for the evaluation of the WiT netw
 - SRRS [download link](https://ntucc365-my.sharepoint.com/personal/f05943089_ntu_edu_tw/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Ff05943089%5Fntu%5Fedu%5Ftw%2FDocuments%2FSRRS%2Ezip&parent=%2Fpersonal%2Ff05943089%5Fntu%5Fedu%5Ftw%2FDocuments&ga=1)
 - CSD [download link](https://drive.google.com/file/d/1smNrDvtPs89e0xk336Rt2-2KZffyX5H-/view)
 
-# Acknowledgement
+# Results
+
+The PSNR and SSIM (numeric) results comparison
+<p align="left">
+  <img src="imgs/metric_results.png" width="800"/>
+</p>
+
+The quantitative (visual) result comparison evaluated on CSD dataset
+<p align="left">
+  <img src="imgs/visual_results.png" width="800"/>
+</p>
+
+# Citation
+
+```
+@article{WiTNet2023,
+  author={Obinna Agbodike and Jenhui Chen},
+  journal={IEEE Access},
+  title={Restoring Snow-Degraded Single Images With Wavelet in Vision Transformer},
+  month=sep,
+  year={2023},
+  volume={11},
+  pages={99470--99480}}
+```
+
+## Acknowledgements
 Useful blocks of code adapted in the WiT is credited to the contributions of [ImageNetModel](https://github.com/yehli/imagenetmodel), [TransWeather](https://github.com/jeya-maria-jose/TransWeather/), and [ViT-PyTorch](https://github.com/lucidrains/vit-pytorch) 
